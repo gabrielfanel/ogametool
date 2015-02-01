@@ -198,11 +198,29 @@ namespace OGameViewer
 
         private T GetFromApi<T>(string link)
         {
-            MemoryStream stream;
+            Stream stream;
             using (var wc = new WebClient())
             {
                 var data = wc.DownloadData(link);
-                stream = new MemoryStream(data);
+                if (Directory.Exists("data") == false)
+                    Directory.CreateDirectory("data");
+                string filename = "data/" + link.Replace("http://s", "").Replace("-fr.ogame.gameforge.com/api/", "").Replace(".xml", "").Replace("?id=", "").Replace("?category=1&type=1", "");
+
+                if (File.Exists(filename) == true)
+                {
+                    stream = File.Open(filename, FileMode.Open);
+                }
+                else
+                {
+                    FileStream fstream = File.Create(filename);
+                    stream = new MemoryStream(data);
+                    StreamWriter sw = new StreamWriter(fstream);
+                    StreamReader sr = new StreamReader(stream);
+                    sw.Write(sr.ReadToEnd());
+                    sw.Close();
+                    stream.Seek(0, SeekOrigin.Begin);
+                }
+
             }
 
             var xmlSerializer = new XmlSerializer(typeof(T));
