@@ -1,0 +1,13 @@
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\bin\Debug\OGameViewer.exe.config
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\bin\Debug\OGameViewer.exe
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\bin\Debug\OGameViewer.pdb
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.csprojResolveAssemblyReference.cache
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\MainWindow.baml
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\MainWindow.g.cs
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\App.g.cs
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer_MarkupCompile.cache
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.g.resources
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.Properties.Resources.resources
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.csproj.GenerateResource.Cache
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.exe
+c:\users\l5o9\documents\visual studio 2013\Projects\OGameViewer\OGameViewer\obj\Debug\OGameViewer.pdb
