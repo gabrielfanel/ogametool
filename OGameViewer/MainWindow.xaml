@@ -1,7 +1,10 @@
-﻿<Window x:Class="OGameViewer.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="500" Width="700" >
+﻿<Window
+    x:Class="OGameViewer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow"
+    Width="700"
+    Height="500">
     <Window.Resources>
         <Style TargetType="ComboBox">
             <Setter Property="Background" Value="Black" />
@@ -10,29 +13,29 @@
             <Setter Property="FontSize" Value="16" />
             <Setter Property="MaxDropDownHeight" Value="100" />
         </Style>
-        
+
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="DeepSkyBlue" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        
+
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="Black" />
             <Setter Property="Opacity" Value="0.6" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
         </Style>
-        
+
         <Style TargetType="GroupBox">
             <Setter Property="Foreground" Value="DeepSkyBlue" />
             <Setter Property="FontSize" Value="16" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="res/og_background.jpg" Stretch="None"></ImageBrush>
+            <ImageBrush ImageSource="res/og_background.jpg" Stretch="None" />
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -43,86 +46,139 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
             <TextBlock Text="Select a server :" />
-            <ComboBox ItemsSource="{Binding ServerNames}" SelectedItem="{Binding SelectedUniverse, Mode=TwoWay}" MinWidth="200" />
+            <ComboBox
+                MinWidth="200"
+                ItemsSource="{Binding ServerNames}"
+                SelectedItem="{Binding SelectedUniverse,
+                                             Mode=TwoWay}" />
         </StackPanel>
-        
-        <DataGrid Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Players, Mode=TwoWay}" SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}" AutoGenerateColumns="False">
+
+        <DataGrid
+            Grid.Row="1"
+            Grid.Column="0"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding Players,
+                                        Mode=TwoWay}"
+            SelectedItem="{Binding SelectedPlayer,
+                                         Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Player" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                <DataGridTextColumn Header="Alliance" Binding="{Binding Alliance}" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="Player" />
+                <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                <DataGridTextColumn Binding="{Binding Alliance}" Header="Alliance" />
             </DataGrid.Columns>
         </DataGrid>
-        
-        <GroupBox Grid.Row="1" Grid.Column="1" Header="Player's Info">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+
+        <GroupBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Header="Player's Info">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Points :"/>
-                <TextBlock Grid.Row="0" Grid.Column="1">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1})">
-                            <Binding Path="PlayerTotalPoints" />
-                            <Binding Path="PlayerTotalPointsRank" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding SearchText, Mode=TwoWay}" />
+                    <Button Grid.Column="1" Content="Search" />
+                </Grid>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Economy Points :"/>
-                <TextBlock Grid.Row="1" Grid.Column="1">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1})">
-                            <Binding Path="PlayerEconomyPoints" />
-                            <Binding Path="PlayerEconomyPointsRank" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <Grid
+                    Grid.Row="1"
+                    Margin="5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Research Points :"/>
-                <TextBlock Grid.Row="2" Grid.Column="1">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1})">
-                            <Binding Path="PlayerResearchPoints" />
-                            <Binding Path="PlayerResearchPointsRank" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Total Points :" />
+                    <TextBlock Grid.Row="0" Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="PlayerTotalPoints" />
+                                <Binding Path="PlayerTotalPointsRank" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Military Points :"/>
-                <TextBlock Grid.Row="3" Grid.Column="1">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1})">
-                            <Binding Path="PlayerMilitaryPoints" />
-                            <Binding Path="PlayerMilitaryPointsRank" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Economy Points :" />
+                    <TextBlock Grid.Row="1" Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="PlayerEconomyPoints" />
+                                <Binding Path="PlayerEconomyPointsRank" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
 
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Honor Points :"/>
-                <TextBlock Grid.Row="4" Grid.Column="1">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1})">
-                            <Binding Path="PlayerHonorPoints" />
-                            <Binding Path="PlayerHonorPointsRank" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Research Points :" />
+                    <TextBlock Grid.Row="2" Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="PlayerResearchPoints" />
+                                <Binding Path="PlayerResearchPointsRank" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
 
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Text="Military Points :" />
+                    <TextBlock Grid.Row="3" Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="PlayerMilitaryPoints" />
+                                <Binding Path="PlayerMilitaryPointsRank" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Text="Honor Points :" />
+                    <TextBlock Grid.Row="4" Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="PlayerHonorPoints" />
+                                <Binding Path="PlayerHonorPointsRank" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                </Grid>
             </Grid>
         </GroupBox>
     </Grid>

@@ -15,7 +15,6 @@ namespace OGameViewer
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    using OGameViewer.Annotations;
     using OGameViewer.BusinessObjects;
 
     /// <summary>
@@ -24,6 +23,9 @@ namespace OGameViewer
     public class MainWindowViewModel : IMainWindowViewModel, INotifyPropertyChanged
     {
         #region Properties
+
+        private string searchText;
+        public string SearchText { get { return searchText; } set { this.searchText = value; this.Search(value); } }
 
         private IEnumerable<string> serverNames; 
         public IEnumerable<string> ServerNames
@@ -278,30 +280,40 @@ namespace OGameViewer
                 return;
             }
 
-            var playerInfo = OGameApiHelper.Instance.PlayersData.Single(p => p.Id == this.SelectedPlayer.Id);
+            var playerInfo = OGameApiHelper.Instance.PlayersData.Single(p => p.id == this.SelectedPlayer.Id);
 
-            this.PlayerTotalPoints = playerInfo.Position.Single(pos => pos.Type == "0").Value;
-            this.PlayerTotalPointsRank = playerInfo.Position.Single(pos => pos.Type == "0").Score;
+            this.PlayerTotalPoints = playerInfo.positions.Single(pos => pos.type == "0").value;
+            this.PlayerTotalPointsRank = playerInfo.positions.Single(pos => pos.type == "0").score;
 
-            this.PlayerEconomyPoints = playerInfo.Position.Single(pos => pos.Type == "1").Value;
-            this.PlayerEconomyPointsRank = playerInfo.Position.Single(pos => pos.Type == "1").Score;
+            this.PlayerEconomyPoints = playerInfo.positions.Single(pos => pos.type == "1").value;
+            this.PlayerEconomyPointsRank = playerInfo.positions.Single(pos => pos.type == "1").score;
 
-            this.PlayerResearchPoints = playerInfo.Position.Single(pos => pos.Type == "2").Value;
-            this.PlayerResearchPointsRank = playerInfo.Position.Single(pos => pos.Type == "2").Score;
+            this.PlayerResearchPoints = playerInfo.positions.Single(pos => pos.type == "2").value;
+            this.PlayerResearchPointsRank = playerInfo.positions.Single(pos => pos.type == "2").score;
 
-            this.PlayerMilitaryPoints = playerInfo.Position.Single(pos => pos.Type == "3").Value;
-            this.PlayerMilitaryPointsRank = playerInfo.Position.Single(pos => pos.Type == "3").Score;
+            this.PlayerMilitaryPoints = playerInfo.positions.Single(pos => pos.type == "3").value;
+            this.PlayerMilitaryPointsRank = playerInfo.positions.Single(pos => pos.type == "3").score;
 
-            this.PlayerHonorPoints = playerInfo.Position.Single(pos => pos.Type == "7").Value;
-            this.PlayerHonorPointsRank = playerInfo.Position.Single(pos => pos.Type == "7").Score;
+            this.PlayerHonorPoints = playerInfo.positions.Single(pos => pos.type == "7").value;
+            this.PlayerHonorPointsRank = playerInfo.positions.Single(pos => pos.type == "7").score;
+        }
+
+        void Search(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) == true)
+            {
+                this.Players = new ObservableCollection<Player>(OGameApiHelper.Instance.Players.PlayerList);
+                return;
+            }
+
+            this.Players = new ObservableCollection<Player>(OGameApiHelper.Instance.Players.PlayerList.Where(p => p.Name.ToLower().Contains(name.ToLower())).ToList());
         }
 
         #region Notify Property Changed
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)

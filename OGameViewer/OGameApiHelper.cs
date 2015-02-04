@@ -128,7 +128,7 @@ namespace OGameViewer
 
         public List<ServerData> ServersData { get; set; }
 
-        public List<PlayerData> PlayersData { get; set; }
+        public List<playerData> PlayersData { get; set; }
 
         public Dictionary<string, string> RankTypesTranslations;
 
@@ -176,12 +176,12 @@ namespace OGameViewer
         {
             this.UniverseId = this.ServersData.Single(s => s.Name == universe).Number;
             this.Players = this.GetFromApi<Players>(this.PlayerStatuses);
-            this.PlayersData = new List<PlayerData>();
+            this.PlayersData = new List<playerData>();
             this.Players.PlayerList.ForEach(
                 p =>
                     {
                         this.PlayerId = p.Id;
-                        this.PlayersData.Add(this.GetFromApi<PlayerData>(this.PlayerInfo));
+                        this.PlayersData.Add(this.GetFromApi<playerData>(this.PlayerInfo));
                     });
             this.PlayerId = null;
         }
@@ -201,7 +201,6 @@ namespace OGameViewer
             Stream stream;
             using (var wc = new WebClient())
             {
-                var data = wc.DownloadData(link);
                 if (Directory.Exists("data") == false)
                     Directory.CreateDirectory("data");
                 string filename = "data/" + link.Replace("http://s", "").Replace("-fr.ogame.gameforge.com/api/", "").Replace(".xml", "").Replace("?id=", "").Replace("?category=1&type=1", "");
@@ -212,6 +211,7 @@ namespace OGameViewer
                 }
                 else
                 {
+                    var data = wc.DownloadData(link);
                     FileStream fstream = File.Create(filename);
                     stream = new MemoryStream(data);
                     StreamWriter sw = new StreamWriter(fstream);
