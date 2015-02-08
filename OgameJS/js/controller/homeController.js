@@ -4,16 +4,18 @@ ogameJs.controller('homeController', ['$scope', 'dataservice', function ($scope,
 	
 	$scope.serverdata = {};
 	
-	$scope.commit = function()
+	$scope.loadServerInfo = function(id)
 	{
-		dataservice.getData('131serverData').success(function(o)
+		dataservice.getData(id + 'serverData').success(function(o)
 		{
 			$scope.$apply(function ()
 			{
 				$scope.serverdata = o;
 			});
-		});
-	}
+		});	
+	};
+	
+	$scope.loadServerInfo(131);
 }]);
 
 
