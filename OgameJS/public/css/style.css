@@ -1,0 +1,20 @@
+﻿body {
+	color:white;
+	background: black url(public/res/bg.jpg) no-repeat;
+	font-family: 'Trebuchet MS';
+}
+
+input, button, fieldset {
+	background-color: black;
+	opacity: 0.5;
+	font-family: 'Trebuchet MS';
+	color: white;
+	padding: 5px;
+	border: 1px #ffffff solid;
+}
+
+button {
+	opacity: 0.7;
+	font-weight: bold;
+	padding: 2px;
+}

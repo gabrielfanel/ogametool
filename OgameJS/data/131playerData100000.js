@@ -1,0 +1,1 @@
+{"id":"100000","name":"GameAdmin","positions":[],"planets":[{"Id":"33620176","Name":"GameAdmin","Coords":"1:1:3","Moon":null}]}
