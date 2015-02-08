@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="ogamejs">
 <head>
     <meta charset="utf-8" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="style.css" />
 	<script src="js\component\angularjs\angular.min.js"></script>
+	<script src="js\app.js"></script>
+	<script src="js\controller\homeController.js"></script>
 </head>
-<body>
+<body ng-controller="homeController">
 
-<div ng-model>
+<div>
 	<input data-ng-model="name"/>
 	{{name}}
-
+	<button ng-click="commit()">lol</button>
 </div>
 
 </body>

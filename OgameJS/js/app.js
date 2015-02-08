@@ -1,0 +1,1 @@
+var ogameJs = angular.module('ogamejs', []);
