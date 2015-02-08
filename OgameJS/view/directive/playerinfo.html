@@ -1,0 +1,6 @@
+<fieldset>
+	<legend>Players</legend>
+	<div data-ng-repeat="p in playerslist.PlayerList">
+		id : {{p.Id}} name : {{p.Name}}  status : {{p.Status}} <span ng-show="p.Alliance != null && p.Alliance != undefined">alliance : {{p.Alliance}}</span>
+	</div>
+</fieldset>

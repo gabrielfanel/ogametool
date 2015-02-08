@@ -3,6 +3,7 @@ ogameJs.controller('homeController', ['$scope', 'dataservice', function ($scope,
 	$scope.name = "azeus";
 	
 	$scope.serverdata = {};
+	$scope.playerslist = [];
 	
 	$scope.loadServerInfo = function(id)
 	{
@@ -12,7 +13,17 @@ ogameJs.controller('homeController', ['$scope', 'dataservice', function ($scope,
 			{
 				$scope.serverdata = o;
 			});
-		});	
+		});
+		
+		
+		dataservice.getData(id + 'players').success(function(o)
+		{
+			$scope.$apply(function ()
+			{
+				$scope.playerslist = o;
+			});
+		});
+		
 	};
 	
 	$scope.loadServerInfo(131);
