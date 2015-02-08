@@ -1,6 +1,6 @@
 ﻿body {
 	color:white;
-	background: black url(public/res/bg.jpg) no-repeat;
+	background: black url(../res/bg.jpg) no-repeat;
 	font-family: 'Trebuchet MS';
 }
 
