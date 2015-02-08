@@ -1,0 +1,12 @@
+﻿body {
+	color:white;
+	background: black url(res/bg.jpg) no-repeat;
+	font-family: 'Trebuchet MS';
+}
+
+input {
+	background-color: black;
+	opacity: 0.5;
+	font-family: 'Trebuchet MS';
+	color: white;
+}
