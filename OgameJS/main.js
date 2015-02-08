@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/script", express.static(__dirname + '/script'));
-app.use("/views", express.static(__dirname + '/views'));
+app.use("/view", express.static(__dirname + '/view'));
 app.use("/public", express.static(__dirname + '/public'));
 app.use("/js", express.static(__dirname + '/js'));
 app.use("/data", express.static(__dirname + '/data'));
