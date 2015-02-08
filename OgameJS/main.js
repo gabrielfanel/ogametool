@@ -18,6 +18,7 @@ app.use("/script", express.static(__dirname + '/script'));
 app.use("/views", express.static(__dirname + '/views'));
 app.use("/public", express.static(__dirname + '/public'));
 app.use("/js", express.static(__dirname + '/js'));
+app.use("/data", express.static(__dirname + '/data'));
 
 var server = http.createServer(app);
 
